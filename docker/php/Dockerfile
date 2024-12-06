@@ -2,6 +2,9 @@ FROM php:8.3-fpm
 
 WORKDIR /var/www/html
 
+# Node.js のセットアップスクリプトを追加
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -
+
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -11,6 +14,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     zip \
     unzip \
+    nodejs \
     && docker-php-ext-install \
     pdo_mysql \
     mbstring \
